@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="./assets/css/style.css" />
+    <title>Travel Bonanza!</title>
+</head>
+
+<body class="background">
+
+
+    <nav>
+        <!--header-->
+        <div class="nav-wrapper blue lighten-2">
+            <a href="#" class="brand-logo center">Travel Bonanza!</a>
+        </div>
+    </nav>
+    <!--Hero-->
+    <div class="hero">
+
+        <div class="row">
+
+            <div>
+                <div class=" col s12 m6 l2 xl2">
+                    <p class="hero-text">Travel Bonanza changes the way you vacation. Choose a Departure location
+                        and
+                        Dates, We'll do the rest. </p>
+                </div>
+            </div>
+            <div class="center-align">
+                <div>
+                    <div class="input-field col s12 m6 l2 xl2 ">
+                        <input id="Origin" type="text" class="validate black-text autocomplete" placeholder="SLC">
+                        <label class="black-text input-label" for="Origin">Leaving from: (Airport Code)</label>
+                    </div>
+                </div>
+
+                <div>
+                    <div class="input-field col s12 m6 l2 xl2">
+                        <input id="outboundDate" type="date" class="validate">
+                        <label for="outboundDate" class="black-text input-label">Travel Date:</label>
+                    </div>
+                </div>
+
+                <div>
+                    <div class=" input-field col s12 m6 l2 xl2 ">
+                        <input id="returnDate" type="date" class="validate">
+                        <label for="returnDate" class="black-text input-label">Return Date:</label>
+                    </div>
+                </div>
+
+                <div class="">
+                    <div class="col s12 m1 l1 xl1">
+                        <button id="search-btn" class="waves-effect waves-light btn button-style" type="submit"
+                            name="action">
+                            <i class="material-icons center">search</i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+
+
+    <!-- Weather Card-->
+    <div>
+        <div class="row">
+            <div class="col s12 m8 push-m2 l3 xl" id>
+                <div class="card weather-info">
+                    <nav>
+                        <div class="nav-wrapper orange darken-2">
+                            <a href="#" class="brand-logo center"><i 
+                                class="material-icons">brightness_5</i>Weather</a>
+                        </div>
+                    </nav>
+
+                    <!-- Current Weather Temp -->
+                    <div class="row">
+                        <div class="col s12">
+                            <h4 class="">
+                                <img class="" id="icon-1">
+                                <span id="forecast-container"></span>
+                            </h4>
+                        </div>
+                    </div>
+
+
+
+                </div>
+            </div>
+
+            <div class="col s12 m12 l9 xl9">
+                <div class="card">
+                    <nav>
+                        <div class="nav-wrapper  blue darken-4">
+                            <a href="#" class="brand-logo center"><i
+                                    class="material-icons">airplanemode_active</i>Flight Details</a>
+                        </div>
+                    </nav>
+                    <div id="flight-details" class="">
+                        <table class="striped">
+                            <thead s6>
+                                <!--this will be static-->
+                                <tr>
+                                    <th>Origin</th>
+                                    <th>Destination</th>
+                                    <th>Departure Date</th>
+                                    <th>Airline</th>
+                                    <!--<th>Class</th>
+                                    this one may be left out for purpose of a MVP-->
+                                    <th>Price
+                                        <!--per traveler roundtrip or oneway-->
+                                    </th>
+                                </tr>
+                            </thead>
+                            <!-- TABLE BODY -->
+                            <tbody id="flight-container-info">
+
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <!--end of flight details-->
+
+            <!-- Event Details-->
+            <div class="col s12 m12 l9 xl9">
+                <div class="card">
+                    <nav>
+                        <div class="nav-wrapper  teal darken-1">
+                            <a href="#" class="brand-logo center"><i class="material-icons">beach_access</i>Event
+                                Details</a>
+                        </div>
+                    </nav>
+                    <div id="event-details" class="">
+                        <table class="striped">
+                            <thead s6>
+                                <!--this will be static-->
+                                <tr>
+                                    <th>Name</th>
+                                    <th>Event Type</th>
+                                    <th>Event Start Date</th>
+
+                                </tr>
+                            </thead>
+                            <!-- TABLE BODY -->
+                            <tbody id="event-container-info">
+
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--footer let me know what else to add here -->
+    <footer class=" blue darken-4">
+        <h5>&copy; Travel Bonanza 2021</h5>
+    </footer>
+
+
+
+
+
+
+
+<!-- MODALS -->
+    <div class="modal card-panel grey lighten-3" id="OutboundBlank">
+        <h4 class="brand-logo center blue white-text"> Departure Date Error</h4>
+        <p class="flow-text">You have not entered a valid departure date. Please enter the date you would like to leave.</p>
+        <div class="modal-footer grey lighten-3">
+            <a href="#" class="modal-close btn blue">Close</a>
+        </div>
+    </div>
+
+    <div class="modal card-panel grey lighten-3" id="ReturnBlank">
+        <h4 class="brand-logo center blue white-text"> Return Date Error</h4>
+        <p class="flow-text"> You have not entered a valid date to return from your trip. Please enter the date you would like to return.</p>
+        <div class="modal-footer grey lighten-3">
+            <a href="#" class="modal-close btn blue">Close</a>
+        </div>
+    </div>
+
+    <div class="modal card-panel grey lighten-3" id="ReturnError">
+        <h4 class="brand-logo center blue white-text"> Return Date Error</h4>
+        <p class="flow-text"> You have entered a return date that happens sooner than your departure date. Please enter a return date that occurs after your departure date. </p>
+        <div class="modal-footer grey lighten-3">
+            <a href="#" class="modal-close btn blue">Close</a>
+        </div>
+    </div>
+
+    <div class="modal card-panel grey lighten-3" id="OriginBlank">
+        <h4 class="brand-logo center blue white-text"> Airport Error</h4>
+        <p class="flow-text"> You have not entered an airport code. Please enter the airport code of the airport you would like to depart. </p>
+        <div class="modal-footer grey lighten-3">
+            <a href="#" class="modal-close btn blue">Close</a>
+        </div>
+    </div>
+
+    <div class="modal card-panel grey lighten-3" id="OriginNotFound">
+        <h4 class="brand-logo center blue white-text"> Airport Not Found</h4>
+        <p class="flow-text">We're sorry. We could not find the airport you are trying to depart from. Please try again.</p>
+        <div class="modal-footer grey lighten-3">
+            <a href="#" class="modal-close btn blue">Close</a>
+        </div>
+    </div>
+
+
+
+
+</body>
+
+
+
+
+
+
+
+
+
+
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"
+    integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ=="
+    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+<script src='https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js'></script>
+<script src="./assets/js/javaScript.js"></script>
+
+</body>
+
+</html>
